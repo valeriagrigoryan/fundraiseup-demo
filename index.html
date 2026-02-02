@@ -53,6 +53,27 @@
   })(window,document,'script','FundraiseUp','AEMZUDUM');
   </script>
 
+  <!-- CONNECT FUNDRAISE UP EVENTS TO dataLayer -->
+  <script>
+    FundraiseUp.on('checkoutOpen', function () {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: 'FundraiseUp.checkoutOpen'
+      });
+    });
+
+    FundraiseUp.on('donationComplete', function (donation) {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        event: 'FundraiseUp.donationComplete',
+        eventModel: {
+          amount: donation.amount,
+          currency: donation.currency
+        }
+      });
+    });
+  </script>
+
   <!-- Donate button -->
   <a href="#XJKDHSTQ">Donate</a>
 
